@@ -1,0 +1,22 @@
+.header {
+  padding: 16px 0;
+  border-bottom: 1px solid #ecedf2;
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    &-item {
+      color: #202124;
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,116 @@
+.jobs__single {
+  &-header {
+    padding: 64px;
+    background-color: #f3f6fb;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  &-body {
+    padding: 64px 0;
+    .container {
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+    }
+    &-left {
+      flex-grow: 1;
+    }
+    &-right {
+      flex-shrink: 0;
+      padding: 36px;
+      background: #f5f7fc;
+      border-radius: 8px;
+      flex-basis: 25%;
+    }
+  }
+  &-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 24px;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    span {
+      color: #77838f;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .blue {
+      path {
+        fill: #1967d2;
+      }
+    }
+  }
+  &-info {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #77838f;
+    padding: 24px 0px;
+  }
+  &-date {
+    p {
+      font-weight: 500;
+      span {
+        color: #e44343;
+      }
+    }
+  }
+  &-buttons {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    .apply {
+      background: #1967d2;
+      border: none;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        background-color: #084395;
+      }
+    }
+    .label {
+      margin-left: 16px;
+      height: 50px;
+      width: 50px;
+      background: #d7e3f6;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: #1967d2 !important;
+        svg path {
+          fill: #d7e3f6;
+        }
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        path {
+          fill: #1967d2;
+        }
+      }
+    }
+  }
+  .jobs__item-title {
+    font-size: 28px;
+  }
+}

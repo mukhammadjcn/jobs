@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration-line: none;
+  color: #202124;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #202124;
+  &:hover {
+    color: #1967d2;
+  }
+}
+
+body {
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 8px 28px;
+  background: #eff4fc;
+  color: #1967d2;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+  color: #ffffff;
+  background-color: #1967d2;
+}
+
+.overlay {
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: auto;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    background: #1967d2;
+    transition: 0.3s ease-in-out;
+  }
+
+  &:hover {
+    color: #1967d2;
+  }
+
+  &:hover:after {
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+}
+
+.lottie {
+  height: 600px;
+  padding: 36px 0;
+}

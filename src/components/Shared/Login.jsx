@@ -1,42 +1,18 @@
 import React, { useState } from "react";
-import { Modal, Form, Input, Button, PageHeader } from "antd";
 import Done from "./Done";
+import { Modal, Tabs, Steps } from "antd";
+import LoginStep1 from "./RegisterSteps/RegisterStep1";
+import LoginStep2 from "./RegisterSteps/RegisterStep2";
+import LoginStep3 from "./RegisterSteps/RegisterStep3";
 import "../../styles/shared/Login.scss";
+import LoginForm from "./LoginForm";
 
 function Login({ modal, setModal }) {
-  // Step 1
-  const sendSmS = (number) => {
-    setNumber(number.phone_number);
-    console.log("number :>> ", number);
-    setStep(2);
-  };
-
-  // Step 2
-  const checkCode = (code) => {
-    const data = {
-      phone_number: number,
-      ...code,
-    };
-    console.log("code :>> ", data);
-    setStep(3);
-  };
-
-  // Step 3
-  const onFinish = (values) => {
-    const { name, password, phone_number } = values;
-    console.log("Received values of form: ", {
-      name,
-      password,
-      phone_number,
-    });
-    setStep(4);
-    setTimeout(() => {
-      setModal(false);
-    }, 3000);
-  };
-
-  const [number, setNumber] = useState("998916763787"); //   Phone number
+  const [number, setNumber] = useState(""); //   Phone number
   const [step, setStep] = useState(1); // Step state
+  const [isLogin, setLogin] = useState(false); // Set Login
+  const { TabPane } = Tabs; //Tabs for Login and Sign in
+  const { Step } = Steps; // One step from Steps
 
   return (
     <>
@@ -49,129 +25,47 @@ function Login({ modal, setModal }) {
         onCancel={() => setModal(false)}
         footer={null}
       >
-        {step == 1 ? (
-          // Step 1
-          <div className="login__step1">
-            <Form name="normal_login" onFinish={sendSmS}>
-              {/* Phone number */}
-              <Form.Item
-                name="phone_number"
-                label="Phone"
-                initialValue={number}
-                rules={[{ required: true, message: "Phone number required" }]}
-              >
-                <Input placeholder="Username" />
-              </Form.Item>
+        <Tabs defaultActiveKey="1" centered className="login__tab">
+          {/* Tab for Login */}
+          <TabPane tab="Login" key="1">
+            {!isLogin ? (
+              <LoginForm setLogin={setLogin} setModal={setModal} />
+            ) : (
+              <Done />
+            )}
+          </TabPane>
 
-              <Form.Item className="login-form-button">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                >
-                  Send code
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        ) : step == 2 ? (
-          // Step 1
-          <div className="login__step2">
-            <PageHeader onBack={() => setStep(1)} title={`Step ${step}`} />
-            <Form name="normal_login" onFinish={checkCode}>
-              {/* Phone number */}
-              <Form.Item
-                name="code"
-                label="Enter the Code"
-                rules={[{ required: true, message: "Code is required" }]}
-              >
-                <Input placeholder="Enter sended code" />
-              </Form.Item>
-
-              <Form.Item className="login-form-button">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                >
-                  Send code
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        ) : step == 3 ? (
-          // Step 3
-          <div className="login__step3">
-            <PageHeader onBack={() => setStep(2)} title={`Step ${step}`} />
-            <Form name="normal_login" onFinish={onFinish}>
-              {/* Phone number */}
-              <Form.Item
-                name="phone_number"
-                label="Phone"
-                initialValue={number}
-                rules={[{ required: true, message: "Phone number required" }]}
-              >
-                <Input disabled placeholder="Username" />
-              </Form.Item>
-
-              {/* Name */}
-              <Form.Item
-                name="name"
-                label="Name"
-                rules={[{ required: true, message: "Please write password" }]}
-              >
-                <Input placeholder="Enter your name" />
-              </Form.Item>
-
-              {/* Password */}
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[{ required: true, message: "Please write password" }]}
-              >
-                <Input.Password placeholder="Enter your password" />
-              </Form.Item>
-
-              {/* Confirm password */}
-              <Form.Item
-                name="confirm"
-                label="Confirm"
-                dependencies={["password"]}
-                hasFeedback
-                rules={[
-                  {
-                    required: true,
-                    message: "Please confirm your password!",
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(new Error("Not match!"));
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password placeholder="Confirm your password" />
-              </Form.Item>
-
-              <Form.Item className="login-form-button">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                >
-                  Register now
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        ) : step == 4 ? (
-          <Done />
-        ) : (
-          ""
-        )}
+          {/* Tab for Login */}
+          <TabPane tab="Register" key="2">
+            <Steps current={step - 1}>
+              <Step title="Step 1" onClick={() => setStep(1)} />
+              <Step title="Step 2" onClick={() => setStep(2)} />
+              <Step title="Step 3" />
+            </Steps>
+            {step == 1 ? (
+              // Step 1
+              <LoginStep1
+                number={number}
+                setNumber={setNumber}
+                setStep={setStep}
+              />
+            ) : step == 2 ? (
+              // Step 2
+              <LoginStep2 number={number} setStep={setStep} />
+            ) : step == 3 ? (
+              // Step 3
+              <LoginStep3
+                number={number}
+                setStep={setStep}
+                setModal={setModal}
+              />
+            ) : step == 4 ? (
+              <Done />
+            ) : (
+              ""
+            )}
+          </TabPane>
+        </Tabs>
       </Modal>
     </>
   );

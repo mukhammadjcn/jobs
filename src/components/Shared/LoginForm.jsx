@@ -13,7 +13,7 @@ const LoginForm = ({ setLogin, setModal }) => {
       const { data } = await client.post(`/users/login`, user);
       localStorage.setItem("user", JSON.stringify(data.user_data));
       localStorage.setItem("token", data.access);
-      message.success("You have succefully login !");
+      message.success(`Welcome back, ${data.user_data.name} !`);
       setLogin(true);
       setTimeout(() => {
         setModal(false);

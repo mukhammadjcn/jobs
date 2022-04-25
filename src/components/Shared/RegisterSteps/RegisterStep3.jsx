@@ -10,7 +10,7 @@ function RegisterStep3({ number, setStep, setModal }) {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const token = await localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       const { name, password, phone_number } = values;
       const { data } = await client.post(`/users/users/register/`, {
         phone_number,
@@ -20,7 +20,7 @@ function RegisterStep3({ number, setStep, setModal }) {
       });
       setStep(4);
 
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify(data.user_data));
       console.log("Received values of form: ", data);
       setTimeout(() => {
         setModal(false);

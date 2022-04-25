@@ -91,7 +91,7 @@ export const data = [
       },
       {
         title: "Accessibility Center",
-        path: "/accessibility",
+        path: "/playground",
       },
     ],
   },

@@ -8,6 +8,7 @@ import Jobs from "./pages/Jobs/index";
 import JobID from "./pages/Jobs/id/singleJob";
 import Footer from "./components/Footer";
 import NotFound from "./components/Shared/NotFound";
+import Playground from "./pages/Playground";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/:id" element={<JobID />} />
+          <Route path="/playground" element={<Playground />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
 

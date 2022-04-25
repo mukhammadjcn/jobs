@@ -1,3 +1,44 @@
 .login {
-  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+
+  .ant-page-header-compact {
+    padding: 0;
+    margin-bottom: 24px;
+    margin-top: -20px;
+  }
+
+  .ant-col {
+    min-height: initial;
+  }
+
+  .ant-form-item {
+    margin-bottom: 8px;
+    flex-direction: column;
+  }
+  .ant-modal-title {
+    line-height: 32px;
+    font-size: 20px;
+  }
+
+  .ant-form-item-label {
+    text-align: left;
+  }
+
+  .login-form-button {
+    margin-top: 8px;
+    text-align: center;
+    button {
+      height: 42px;
+      width: 50%;
+      border-radius: 8px;
+    }
+  }
+
+  .lottie {
+    width: 200px;
+    height: 200px;
+    transform: scale(2.5);
+    overflow: hidden;
+  }
 }

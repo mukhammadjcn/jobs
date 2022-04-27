@@ -18,6 +18,9 @@
 
   .ant-steps {
     margin-bottom: 24px;
+    .ant-steps-item {
+      cursor: pointer;
+    }
   }
   .ant-page-header-compact {
     padding: 0;
